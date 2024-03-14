@@ -15,7 +15,7 @@ transform_vis = transforms.Compose([
 
 # Instantiate new Generator object, and load the model from its saved state
 netG = Generator(config.noise, config.generator_filters, config.image_channels).to(config.device)
-netG.load_state_dict(torch.load(config.model_path, map_location=config.device))
+netG.load_state_dict(torch.load(config.model_path + "/dcgan_generator.pth", map_location=config.device))
 netG.eval()
 
 num_images = 256 # a nice square number
