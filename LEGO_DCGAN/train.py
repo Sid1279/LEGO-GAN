@@ -68,4 +68,4 @@ def train():
                 fake, f"{config.output_dir}/fake_samples_epoch_{epoch + 1}.png",
                 normalize=True,
             )
-    torch.save(netG.state_dict(), config.save_path + "/dcgan_generator.pth")
+    torch.save(netG.state_dict(), config.model_path + "/dcgan_generator.pth")
