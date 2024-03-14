@@ -26,32 +26,32 @@ def train():
             real_images = data.to(config.device)
             batch_size = real_images.size(0)
             label = torch.full((batch_size, 1, 1, 1), 1.0, device=config.device)
-            noise = torch.randn(batch_size, config.nz, 1, 1, device=config.device)
+            noise = torch.randn(batch_size, config.noise, 1, 1, device=config.device)
 
             # Discriminator: maximize ln( D(x) ) + ln( 1 - D(G(z)) )
-            config.netD.zero_grad()
-            output_real = config.netD(real_images)
+            netD.zero_grad()
+            output_real = netD(real_images)
             errD_real = config.criterion(output_real, label)
             errD_real.backward()
             D_x = output_real.mean().item()
 
-            fake_images = config.netG(noise)
+            fake_images = netG(noise)
             label.fill_(0.0)
-            output_fake = config.netD(fake_images.detach())
+            output_fake = netD(fake_images.detach())
             errD_fake = config.criterion(output_fake, label)
             errD_fake.backward()
             D_G_z1 = output_fake.mean().item()
             errD = errD_real + errD_fake
-            config.optimizerD.step()
+            optimizerD.step()
 
             # Generator: maximize ln( D(G(z)) )
-            config.netG.zero_grad()
+            netG.zero_grad()
             label.fill_(1.0)
-            output = config.netD(fake_images)
+            output = netD(fake_images)
             errG = config.criterion(output, label)
             errG.backward()
             D_G_z2 = output.mean().item()
-            config.optimizerG.step()
+            optimizerG.step()
 
             if i % 50 == 0:
                 print(
@@ -63,9 +63,9 @@ def train():
                 )
 
         with torch.no_grad():
-            fake = config.netG(config.fixed_noise).detach().cpu()
+            fake = netG(config.fixed_noise).detach().cpu()
             vutils.save_image(
                 fake, f"{config.output_dir}/fake_samples_epoch_{epoch + 1}.png",
                 normalize=True,
             )
-    torch.save(config.netG.state_dict(), config.save_path)
+    torch.save(netG.state_dict(), config.save_path + "/dcgan_generator.pth")

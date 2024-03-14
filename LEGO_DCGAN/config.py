@@ -24,11 +24,12 @@ transform = transforms.Compose([
 
 criterion = nn.BCELoss()
 
-num_epochs = 100
-output_dir = "minifig_output/Trial_3"
+num_epochs = 1
+trial = str(3)
+output_dir = f"minifig_output/Trial_{trial}"
 os.makedirs(output_dir, exist_ok=True)
 
-model_path = "models/DCGAN_minifig.pth"
+model_path = f"models/Trial_{trial}"
 os.makedirs(model_path, exist_ok=True)
 
 fixed_noise = torch.randn(64, noise, 1, 1, device=device)
