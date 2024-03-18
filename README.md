@@ -1,7 +1,7 @@
 # LEGO-GAN
 ### A deep convolutional generative adversarial neural network to generate realistic images of LEGO minifigures
 
-- `LEGO_DCGAN/minifig_images` contains images of LEGO minifigures to train the model. Performed web scraping via [Rebrickable](https://rebrickable.com/).
+- `LEGO_DCGAN/minifig_images` contains images of LEGO minifigures to train the model. Obtained via some web-scraping on [Rebrickable](https://rebrickable.com/).
 
 - `LEGO_DCGAN/minifig_output` contains generated images for each trial during training. 
 
