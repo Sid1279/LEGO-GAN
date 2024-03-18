@@ -16,4 +16,4 @@
 <img src="https://github.com/Sid1279/LEGO-GAN/blob/main/LEGO_DCGAN/generated/128x128/generated_10.png" width="49%" height="auto">
 <img src="https://github.com/Sid1279/LEGO-GAN/blob/main/LEGO_DCGAN/generated/128x128/generated_9.png" width="49%" height="auto">
 
-Learn more about implementing your own DCGAN in PyTorch [here](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html)!
+Learn more about implementing your own DCGAN in PyTorch [here](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html)
